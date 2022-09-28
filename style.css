@@ -1,0 +1,42 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin:0;
+
+    background-color: aqua;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.turing-machine__roll {
+    display: flex;
+    flex-direction: row;
+    
+    width: 1000px;
+
+    overflow-x: scroll;
+
+}
+
+.point {
+    background-color: aquamarine;
+}
+
+.turing-machine__element {
+    width: 64px;
+    height: 64px;
+
+    font-size: 32pt; 
+
+    text-align: center;
+
+    border-radius: 8px;
+}
+
