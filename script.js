@@ -1,42 +1,87 @@
-console.log("dfsfdsdfsdf");
+// console.log("dfsfdsdfsdf");
 
+const nTapeBack = document.querySelector('#tape-back');
+const nTape = document.querySelector('#tape');
+const nCursor = document.querySelector('#cursor');
 
-const vTM = document.querySelector(".turing-machine__roll");
+const nCurState = document.querySelector('#cur-state');
+const nCurSym = document.querySelector('#cur-sym');
 
-const view = {
-    state: 'Q0',
-    cursor: 0,
-    values: "000000000000000011000000000000000000000"
+const viewUpdateTapeCurrElement = () => {
+    const cursorRect = nCursor.getBoundingClientRect();
+    const nTapeElements = nTape.querySelectorAll('.tape__element');
+
+    let i;
+    nTapeElements.forEach((node, index) => {
+        const nodeRect = node.getBoundingClientRect();
+        const delta = Math.abs(((nodeRect.left + nodeRect.right) / 2) - ((cursorRect.left + cursorRect.right) / 2));
+
+        if (delta < 52) {
+            node.classList.add('active');
+        } else  {
+            node.classList.remove('active');
+        }
+    });
 }
 
+const updateView = ({values, cursor, state}) => {
+    nTape.innerHTML = "";
 
-const updateView = (view) => {
-    vTM.innerHTML = "";
-
-    list = view.values.split('');
+    list = values.split('');
     list.forEach(
         (val, index) => {
             const nCell = document.createElement("input");
-            nCell.className = "turing-machine__element";
+            nCell.className = "tape__element";
             
-            if (view.cursor == index) nCell.classList.add("point");
             nCell.value = val;
 
-            vTM.appendChild(nCell);
+            nCell.onfocus = () => nCell.value = '';
+            nCell.onblur = () => nCell.value = (nCell.value == '') ? 0 : nCell.value;
+            nCell.oninput = () => {
+                if (nCell.value.length >= 1) nTape.childNodes[Array.from(nTape.childNodes).indexOf(nCell)+1].focus();
+            }
+            nCell.onkeydown = (e) => {
+                if (e.key == 'ArrowRight')
+                    nTape.childNodes[Array.from(nTape.childNodes).indexOf(nCell)+1].focus();
+                else if (e.key == 'ArrowLeft')
+                    nTape.childNodes[Array.from(nTape.childNodes).indexOf(nCell)-1].focus();
+            } 
+       
+            nTape.appendChild(nCell);
         }
     );
-};
 
-const getViewRow = (view) => {
-    let str = "";
+    nTape.childNodes[cursor].scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+    });
 
-    vTM.childNodes.forEach((c) => str += c.value);
+    nCurState.innerHTML = state;
+    nCurSym.innerHTML = values[cursor];
 
-    return str;
+    viewUpdateTapeCurrElement();
 }
 
-updateView(view);
+const getView = () => {
+    let str = "";
+    let cursor = 0;
 
+    nTape.childNodes.forEach((node, index) => {
+        node.classList.forEach((cls) => {
+            if (cls == 'active') {
+                cursor = index;
+            } 
+        });
+    });
+
+    nTape.childNodes.forEach((c) => str += c.value);
+
+   
+    return {'values': str, 'cursor': cursor, 'state': nCurState.innerHTML};
+}
+
+nTapeBack.onscroll = viewUpdateTapeCurrElement;
 
 const turingProgram = {
     Q0: {
@@ -80,23 +125,29 @@ const turingIterate = ([roll, cur = 0, state = "Q0"]) => {
         case 'S': newCur; break;
     }
 
-    // console.log(turingProgram[state], c, roll, cur, state);
     return [
-        [roll.substring(0, cur)] + curState.out + roll.substring(cur+1), 
+        [roll.slice(0, cur)] + curState.out + roll.slice(cur+1), 
         newCur, 
         curState.state
     ]
 }
 
 
-const btnIterate = document.querySelector("#btnIterate");
-const btnIterateUntilStop = document.querySelector("#btnIterateUntilStop");
+const btnIterate = document.querySelector("#btn-iterate");
+
+
+
+updateView({values: '000000000000000000000000000000', cursor: 0, state: 'Q0'});
 
 btnIterate.onclick = () => {
-    let turing = turingIterate([getViewRow(), view.cursor, view.state]);
-    view.cursor = turing[1];
+
+    view = getView();
+    let turing = turingIterate([view.values, view.cursor, view.state]);
     view.values = turing[0];
+    view.cursor = turing[1];
     view.state = turing[2];
+
+    updateView(view);
 
     console.log(view.state);
     updateView(view);

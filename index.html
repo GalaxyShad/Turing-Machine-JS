@@ -9,12 +9,89 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="turing-machine">
-        <div class="turing-machine__roll">
-        
+    <div id="wrapper">
+        <div class="turing-machine">
+            <div class="info-section">
+                <div class="info-section__block">
+                    <div class="info-section__block__title">
+                        Current
+                    </div>
+                    <div class="info-section__block__stats">
+                        <div class="stat">
+                            <div class="stat__name">
+                                State
+                            </div>
+                            <div class="stat__value" id="cur-state">
+                                Q0
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat__name">
+                                Symbol
+                            </div>
+                            <div class="stat__value" id="cur-sym">
+                                1
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+              
+                <div class="info-section__block">
+                    <div class="info-section__block__title">
+                        Next
+                    </div>
+                    <div class="info-section__block__stats">
+                        <div class="stat">
+                            <div class="stat__name">
+                                State
+                            </div>
+                            <div class="stat__value">
+                                Q0
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat__name">
+                                Symbol
+                            </div>
+                            <div class="stat__value">
+                                1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section__cursor" id="cursor">
+                <img src="cursor.svg">
+            </div>
+
+            <div class="machine-section">
+                <div class="tape-border">
+
+                </div>
+                <div class="tape-back" id="tape-back">
+                    <div class="tape" id="tape">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                        <input class="tape__element">
+                       
+                    </div>
+                </div>
+                <div class="tape-border">
+                    
+                </div>
+            </div>
+
+            <button id="btn-iterate">
+                Step
+            </button>
         </div>
-        <button id="btnIterate">Iterate</button>
-        <button id="btnIterateUntilStop">Iterate Until Stop</button>
     </div>
 
     <script src="script.js"></script>
