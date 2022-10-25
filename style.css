@@ -224,10 +224,13 @@ body {
 
     font-weight: 600;
     font-size: 16px;
+
+    transition: 0.1s;
 }
 
 #btn-iterate:hover {
     width: 350px;
+    border-color: rgb(232, 210, 255);
 }
 
 #btn-iterate:active {
