@@ -1,0 +1,31 @@
+const turingAlexMultProgram = () => {
+  return {
+    Q0: {
+      '1': { state: "Q1", out: "0", action: "R" },
+      "=": { state: "Q3", out: "=", action: "R" },
+      "+": { state: "Q0", out: "+", action: "R" },
+      '0': { state: "Q0", out: "0", action: "R" },
+    },
+
+    Q1: {
+      '1': { state: "Q1", out: "1", action: "R" },
+      "=": { state: "Q1", out: "=", action: "R" },
+      "+": { state: "Q1", out: "+", action: "R" },
+      '0': { state: "Q2", out: "1", action: "L" },
+    },
+
+    Q2: {
+      '1': { state: "Q2", out: "1", action: "L" },
+      "=": { state: "Q2", out: "=", action: "L" },
+      "+": { state: "Q2", out: "+", action: "L" },
+      '0': { state: "Q0", out: "0", action: "R" },
+    },
+
+    Q3: {
+      '1': { state: "Q3", out: "1", action: "S" },
+      "=": { state: "Q3", out: "=", action: "S" },
+      "+": { state: "Q3", out: "+", action: "S" },
+      '0': { state: "Q3", out: "0", action: "S" },
+    },
+  };
+};
