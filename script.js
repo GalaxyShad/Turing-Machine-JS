@@ -1,5 +1,3 @@
-// console.log("dfsfdsdfsdf");
-
 const nTapeBack = document.querySelector("#tape-back");
 const nTape = document.querySelector("#tape");
 const nCursor = document.querySelector("#cursor");
@@ -127,7 +125,7 @@ const turingMultProgram = () => {
     Q0: {
       1: { state: "Q1", out: "0", action: "R" },
       "=": { state: "Q3", out: "=", action: "L" },
-      "*": { state: "Q4", out: "0", action: "R" },
+      "*": { state: "Q4", out: "*", action: "R" },
       0: { state: "Q0", out: "0", action: "R" },
     },
 
@@ -151,15 +149,13 @@ const turingMultProgram = () => {
 
     Q4: {
       1: { state: "Q4", out: "0", action: "R" },
-      "=": { state: "Q4", out: "0", action: "S" },
+      "=": { state: "Q4", out: "=", action: "S" },
       0: { state: "Q4", out: "0", action: "S" },
     },
   };
 };
 
 let turingProgram = turingSumProgram();
-// const turingProgram = turingMultiplyProgram();
-// const turingProgram = turingMultProgram();
 
 const turingIterate = ([roll, cur = 0, state = "Q0"]) => {
   const c = roll[cur];
