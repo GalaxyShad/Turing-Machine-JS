@@ -211,11 +211,7 @@ body {
     background: #D6ACFF;
 }
 
-#btn-mode {
-    background: #BDCCD3;
-    color: #5A676D;
-    border-color: #b1bec2;
-}
+
 
 .btn {
     width: 293px;
@@ -236,6 +232,7 @@ body {
     margin-bottom: 16px;
 }
 
+
 .btn:hover {
     width: 350px;
     border-color: rgb(232, 210, 255);
@@ -245,8 +242,12 @@ body {
     background: linear-gradient(95.97deg, #C999EE -1.6%, #967CF5 101.48%);
     border: 4px solid #B09AF6;
     box-shadow: -4px -4px 13px rgba(239, 249, 255, 0.83), 7px 7px 12px rgba(8, 46, 103, 0.25), inset 5px 9px 20px rgba(5, 15, 106, 0.25), inset -9px -9px 13px 3px rgba(255, 255, 255, 0.25);
+}
 
-    
+.btn-mode {
+    background: #BDCCD3!important;
+    color: #5A676D!important;
+    border-color: #b1bec2!important;
 }
 
 
