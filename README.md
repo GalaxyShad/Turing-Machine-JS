@@ -1,4 +1,4 @@
-# js-turing-machine
+# Turing Machine on Pure JavaScript
 ![image](https://github.com/GalaxyShad/js-turing-machine/assets/52833080/21d2baa1-2d3c-4569-9359-44e9d66adbd3)
 ---
 
