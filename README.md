@@ -3,7 +3,7 @@
 ---
 
 A simple Turing machine made in a functional style on pure JS with two preset programs. 
-## [😎 Try it](https://galaxyshad.github.io/js-turing-machine/)
+## [😎 Try it](https://galaxyshad.github.io/Turing-Machine-JS/) 
 ## Modes
 ### ➕ Summation Mode 
 Adds numbers in the unit number system
